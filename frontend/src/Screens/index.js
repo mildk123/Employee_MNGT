@@ -12,27 +12,27 @@ import { BrowserRouter } from 'react-router-dom'
 import { Route, Switch } from 'react-router'
 
 class Routes extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            value: 0,
-            redirectTo: 'Dashboard'
-        };
-    }
+    // constructor() {
+    //     super()
+    //     this.state = {
+    //         value: 0,
+    //         redirectTo: 'Dashboard'
+    //     };
+    // }
 
-    handleClick = (name) => {
-        if (name === "Dashboard") {
-            this.setState({
-                redirectTo: name,
-                value: 0
-            })
-        } else {
-            this.setState({
-                redirectTo: name,
-                value: 1
-            })
-        }
-    }
+    // handleClick = (name) => {
+    //     if (name === "Dashboard") {
+    //         this.setState({
+    //             redirectTo: name,
+    //             value: 0
+    //         })
+    //     } else {
+    //         this.setState({
+    //             redirectTo: name,
+    //             value: 1
+    //         })
+    //     }
+    // }
 
     render() {
         return (
@@ -41,8 +41,8 @@ class Routes extends React.Component {
                     <Switch>
                         <Route exact path="/" component={Auth} />
                         <Route path="/Home" component={Home} />
-                        <Route path="/AddProducts" component={AddProducts} />
-                        <Route path="/AddShop" component={AddShop} />
+                        {/* <Route path="/AddProducts" component={AddProducts} /> */}
+                        {/* <Route path="/AddShop" component={AddShop} /> */}
                         <Route component={Error} />
                         
                     </Switch>
