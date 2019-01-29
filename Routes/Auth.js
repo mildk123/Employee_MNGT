@@ -1,11 +1,13 @@
 
-const Users = require('../Model/User')
+const express = require("express");
+const router = express.Router();
 
+const Users = require('../Model/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 
 // ///////////////// Authentication ////////////////////
-app.post("/auth/register", (req, res) => {
+router.post("/auth/register", (req, res) => {
     const user = req.body;
     const hash = hashPassword(user.password);
 
@@ -16,7 +18,7 @@ app.post("/auth/register", (req, res) => {
         .catch(e => res.status(500).send({ message: e.message, registered: false }));
 })
 
-app.post("/auth/login", async (req, res) => {
+router.post("/auth/login", async (req, res) => {
     console.log('Authenticating User');
 
     //Check Email
@@ -48,3 +50,5 @@ function hashPassword(password) {
 
     return hash;
 }
+
+module.exports = router;
