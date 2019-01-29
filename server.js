@@ -8,6 +8,7 @@ const cors = require('cors')
 const mongoose = require('./config/db');
 
 const path = require('path');
+var indexRouter = require('./routes/index');
 
 
 var port = process.env.PORT || 5000;
@@ -28,7 +29,7 @@ db.once('open', () => {
 
 // Static file declaration
 app.use(express.static(path.join(__dirname, 'client/build')));
-
+app.use('/', indexRouter);
 
 ///////////////// APIs ////////////////////
 // Get all todos
