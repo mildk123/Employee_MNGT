@@ -2,13 +2,13 @@
 
 
 html,body{
-    background: linear-gradient(30deg, #E22929, #ECCF9E);
+    background: linear-gradient(0deg, #2193b0, #6dd5ed);
     margin: 0px;
-  padding: 0px;
-  border: 0px;
-  height:100%;
-  width:100%;
-  overflow: auto;
+    padding: 0px;
+    border: 0px;
+    height:100%;
+    width:100%;
+    overflow: auto;
 }
 .myComponent > h1{
     font-family: 'Dancing Script', cursive;
