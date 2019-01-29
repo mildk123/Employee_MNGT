@@ -12,7 +12,7 @@ html,body{
 }
 .myComponent > h1{
     font-family: 'Dancing Script', cursive;
-    color: 'white';
+    color: white;
     word-spacing: 20px;
     text-align: center;
     margin-top: 25%;
