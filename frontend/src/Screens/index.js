@@ -3,8 +3,6 @@ import React from 'react';
 import Auth from './Auth/index';
 
 import Home from './Home';
-import AddProducts from './AddProducts';
-import AddShop from './AddShop';
 import Error from './Error';
 
 
