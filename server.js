@@ -27,6 +27,18 @@ db.once('open', () => {
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use('/', indexRouter);
 
+app.post("/auth/register", (req, res) => {
+  console.log('register User')
+  // const user = req.body;
+  // const hash = hashPassword(user.password);
+
+  // const newUser = new Users({ email: user.email, password: hash });
+
+  // newUser.save()
+  //     .then(() => res.send({ message: "User registered successfully!", registered: true }))
+  //     .catch(e => res.status(500).send({ message: e.message, registered: false }));
+})
+
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
   res.sendFile(path.join(__dirname+'/client/build/index.html'));
