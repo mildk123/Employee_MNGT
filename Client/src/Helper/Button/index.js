@@ -1,4 +1,4 @@
-import React , {Component, Fragment} from 'react'
+import React, { Component, Fragment } from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
 import Modal from '../Modal'
@@ -7,45 +7,53 @@ class AuthButtons extends Component {
   constructor() {
     super()
     this.state = {
-      modalType : null,
-      modalTitle : null
+      modalType: null,
+      modalTitle: null
     }
+    this.showModal = React.createRef()
+
   }
 
-  showModal = type => {
-    console.log(type)
+  renderModal = type => {
+    this.setState({
+      modalType: type,
+      modalTitle: (type === 'Register' ? "Create Account" : 'Login'),
+      btnIcon: (type === 'Register' ? "user circle" : 'sign-in'),
+    })
+    this.showModal.current.show();
   }
 
 
   render() {
-    const {modalType, modalTitle } = this.state;
+    const { modalType, modalTitle, btnIcon } = this.state;
     return (
       <Fragment>
         <Modal
-        ref='authModal' 
-        type={modalType}
-        modalTitle={modalTitle}
+          ref={this.showModal}
+          type={modalType}
+          modalTitle={modalTitle}
+          btnIcon={btnIcon}
         />
-      <div>
-        <Button.Group>
-          <Button  
-          onClick={() => this.showModal('Register')}
-          animated color='black'  primary >
-            <Button.Content visible>Register</Button.Content>
-            <Button.Content hidden>
-              <Icon name='user circle' />
-            </Button.Content>
-          </Button>
+        <div>
+          <Button.Group>
+            <Button
+              onClick={() => this.renderModal('Register')}
+              animated color='black' primary >
+              <Button.Content visible>Register</Button.Content>
+              <Button.Content hidden>
+                <Icon name='user circle' />
+              </Button.Content>
+            </Button>
 
-          <div style={{ margin: 3 }} />
-          <Button onClick={() => this.showModal('Login')} animated size="large" color="red"  >
-            <Button.Content visible>Login</Button.Content>
-            <Button.Content hidden>
-              <Icon name='sign-in' />
-            </Button.Content>
-          </Button>
-        </Button.Group>
-      </div>
+            <div style={{ margin: 3 }} />
+            <Button onClick={() => this.renderModal('Login')} animated size="large" color="red"  >
+              <Button.Content visible>Login</Button.Content>
+              <Button.Content hidden>
+                <Icon name='sign-in' />
+              </Button.Content>
+            </Button>
+          </Button.Group>
+        </div>
       </Fragment>
     )
   }

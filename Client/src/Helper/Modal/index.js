@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal } from 'semantic-ui-react'
+import { Button, Modal, Icon } from 'semantic-ui-react'
 
 class AuthModal extends Component {
   constructor() {
@@ -7,7 +7,7 @@ class AuthModal extends Component {
     this.state = { open: false }
   }
 
-  show = size => () => this.setState({ size, open: true })
+  show = () => this.setState({ open: true })
   close = () => this.setState({ open: false })
 
   render() {
@@ -25,7 +25,11 @@ class AuthModal extends Component {
 
           <Modal.Actions>
             <Button negative>Cancel</Button>
-            <Button positive icon='checkmark' labelPosition='right' >{this.props.type}</Button>
+
+            <Button color='black' icon labelPosition='right'>
+              {this.props.type}
+              <Icon name={this.props.btnIcon} />
+            </Button>
           </Modal.Actions>
 
         </Modal>
