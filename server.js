@@ -1,14 +1,13 @@
 
 const express = require('express');
-// const Todos = require('./model/Todos')
-
 const app = express();
+const path = require('path');
 
 const cors = require('cors')
 const mongoose = require('./config/db');
 
-const path = require('path');
-let indexRouter = require('./routes/index');
+const routes = require('./routes');
+
 
 let port = process.env.PORT || 5000;
 
@@ -25,23 +24,12 @@ db.once('open', () => {
 
 // Static file declaration
 app.use(express.static(path.join(__dirname, 'client/build')));
-app.use('/', indexRouter);
 
-app.post("/auth/register", (req, res) => {
-  console.log('register User')
-  // const user = req.body;
-  // const hash = hashPassword(user.password);
-
-  // const newUser = new Users({ email: user.email, password: hash });
-
-  // newUser.save()
-  //     .then(() => res.send({ message: "User registered successfully!", registered: true }))
-  //     .catch(e => res.status(500).send({ message: e.message, registered: false }));
-})
+app.use('/', routes);
 
 // Handles any requests that don't match the ones above
-app.get('*', (req,res) =>{
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 
