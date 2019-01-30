@@ -9,6 +9,7 @@ class AuthScreen extends Component {
         return <Fragment >
             <div className="myComponent">
                 <h1>Authentication</h1>
+                <div></div>
             </div>
         </Fragment>
     }
