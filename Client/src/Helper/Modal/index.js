@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Modal, Icon } from 'semantic-ui-react'
+import { Input } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
+
 
 class AuthModal extends Component {
   constructor() {
@@ -19,8 +22,39 @@ class AuthModal extends Component {
 
         <Modal size='tiny' open={open} onClose={this.close}>
           <Modal.Header>{this.props.modalTitle}</Modal.Header>
+
           <Modal.Content>
-            <p>Are you sure you want to delete your account</p>
+            <Grid>
+
+              <Grid.Row columns={1}>
+                <Grid.Column width={15}>
+                  <Input
+                    tabIndex="1"
+                    fluid
+                    label={<Icon name='mail' />}
+                    type="email"
+                    size="large"
+                    iconPosition='left'
+                    placeholder='Email' />
+                </Grid.Column>
+              </Grid.Row>
+
+              <Grid.Row columns={1}>
+                <Grid.Column width={15}>
+                  <Input
+                    tabIndex="2"
+                    fluid
+                    label={<Icon name='key' />}
+                    type="password"
+                    size="large"
+                    iconPosition='left'
+                    placeholder='Password' />
+                </Grid.Column>
+
+              </Grid.Row>
+
+            </Grid>
+
           </Modal.Content>
 
           <Modal.Actions>
