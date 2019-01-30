@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Button } from 'semantic-ui-css'
 
 // Local CSS
 import './style.css'
@@ -9,7 +10,9 @@ class AuthScreen extends Component {
         return <Fragment >
             <div className="myComponent">
                 <h1>Authentication</h1>
-                <div></div>
+                <div>
+                <Button>Click Here</Button>
+                                </div>
             </div>
         </Fragment>
     }
