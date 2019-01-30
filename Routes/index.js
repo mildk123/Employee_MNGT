@@ -7,14 +7,6 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 
 
-
-
-
-routes.get('/', (req, res) => {
-    res.status(200).json({ message: 'Connected!' });
-});
-
-
 // ///////////////// Authentication ////////////////////
 routes.post("/auth/register", (req, res) => {
     console.log('register User')
