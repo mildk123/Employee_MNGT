@@ -1,24 +1,54 @@
-import React from 'react'
+import React , {Component, Fragment} from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
-const ButtonExampleAnimated = () => (
-  <div>
-    <Button.Group>
-      <Button animated color='black' size="large" primary >
-        <Button.Content visible>Register</Button.Content>
-        <Button.Content hidden>
-          <Icon name='user circle' />
-        </Button.Content>
-      </Button>
-<div style={{margin:3}}/>
-      <Button animated size="large" color="green"  >
-        <Button.Content visible>Login</Button.Content>
-        <Button.Content hidden>
-          <Icon name='sign-in' />
-        </Button.Content>
-      </Button>
-    </Button.Group>
-  </div>
-)
+import Modal from '../Modal'
 
-export default ButtonExampleAnimated
+class AuthButtons extends Component {
+  constructor() {
+    super()
+    this.state = {
+      modalType : null,
+      modalTitle : null
+    }
+  }
+
+  showModal = type => {
+    console.log(type)
+  }
+
+
+  render() {
+    const {modalType, modalTitle } = this.state;
+    return (
+      <Fragment>
+        <Modal
+        ref='authModal' 
+        type={modalType}
+        modalTitle={modalTitle}
+        />
+      <div>
+        <Button.Group>
+          <Button  
+          onClick={() => this.showModal('Register')}
+          animated color='black'  primary >
+            <Button.Content visible>Register</Button.Content>
+            <Button.Content hidden>
+              <Icon name='user circle' />
+            </Button.Content>
+          </Button>
+
+          <div style={{ margin: 3 }} />
+          <Button onClick={() => this.showModal('Login')} animated size="large" color="red"  >
+            <Button.Content visible>Login</Button.Content>
+            <Button.Content hidden>
+              <Icon name='sign-in' />
+            </Button.Content>
+          </Button>
+        </Button.Group>
+      </div>
+      </Fragment>
+    )
+  }
+}
+
+export default AuthButtons;
