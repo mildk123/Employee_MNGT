@@ -17,6 +17,7 @@ class AuthModal extends Component {
       [name]: value
     })
   }
+
   action = () => {
     const { email, password } = this.state;
     if (!email || !password) {
@@ -36,8 +37,18 @@ class AuthModal extends Component {
         }
         )
           .then(data => data.json())
-          .then(dat => swal(dat))
-          .catch(err => swal(err.message))
+          .then(dat => {
+            let response = dat.match
+            if (response === false) {
+              swal(dat.message)
+            } else {
+              this.props.history.push('/Home')
+            }
+          })
+          .catch(err => {
+            swal(err.message)
+            console.log(err.message)
+          })
 
       } else {
         fetch('/auth/login', {
@@ -50,8 +61,19 @@ class AuthModal extends Component {
         }
         )
           .then(data => data.json())
-          .then(dat => swal(dat))
-          .catch(err => swal(err.message))
+          .then(dat => {
+            let response = dat.match
+            if (response === false) {
+              swal(dat.message)
+            } else {
+              this.props.history.push('/Home')
+            }
+          })
+          .catch(err => {
+            swal(err.message)
+            console.log(err.message)
+          }
+          )
       }
     }
   }

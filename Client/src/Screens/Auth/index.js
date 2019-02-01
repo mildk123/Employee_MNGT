@@ -10,7 +10,7 @@ class AuthScreen extends Component {
             <div className="myComponent">
                 <h1>Authentication</h1>
                 <div className="btnDiv">
-                    <Button />
+                    <Button {...this.props}/>
                 </div>
             </div>
         </Fragment>

@@ -29,6 +29,7 @@ class AuthButtons extends Component {
     return (
       <Fragment>
         <Modal
+        {...this.props}
           ref={this.showModal}
           type={modalType}
           modalTitle={modalTitle}

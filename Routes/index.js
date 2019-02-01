@@ -27,7 +27,7 @@ routes.post("/auth/login", async (req, res) => {
     const user = await Users.find({ email: req.body.email });
 
     if (!user.length) {
-        res.status(500).send({ message: "User not found!", match: false });
+        res.status(500).send({ message: "Incorrect Email/Password!", match: false });
         return;
     }
 
