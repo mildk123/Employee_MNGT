@@ -39,8 +39,6 @@ class Routes extends React.Component {
                     <Switch>
                         <Route exact path="/" component={Auth} />
                         <Route path="/Home" component={Home} />
-                        {/* <Route path="/AddProducts" component={AddProducts} /> */}
-                        {/* <Route path="/AddShop" component={AddShop} /> */}
                         <Route component={Error} />
                         
                     </Switch>

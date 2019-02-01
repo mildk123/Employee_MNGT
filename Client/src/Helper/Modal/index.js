@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Modal, Icon } from 'semantic-ui-react'
 import { Input } from 'semantic-ui-react'
 import { Grid } from 'semantic-ui-react'
+import {connect} from 'react-redux'
 import swal from 'sweetalert'
 
 class AuthModal extends Component {
@@ -66,6 +67,7 @@ class AuthModal extends Component {
             if (response === false) {
               swal(dat.message)
             } else {
+                sessionStorage.setItem('jwtToken', dat.token)
               this.props.history.push('/Home')
             }
           })
@@ -137,4 +139,12 @@ class AuthModal extends Component {
   }
 }
 
-export default AuthModal;
+function mapStateToProps(state) {
+  console.log(state);
+  return { todoList: state}
+}
+
+export default connect(mapStateToProps)(AuthModal)
+
+
+// export default AuthModal;

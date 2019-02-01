@@ -40,7 +40,7 @@ routes.post("/auth/login", async (req, res) => {
     }
 
     //Generate Token
-    const token = await jwt.sign({ user: user[0] }, 'anySecretKey');
+    const token = await jwt.sign({ user: user[0] }, 'emp_mgnt112');
 
     res.send({ token: token, match: true });
 })
