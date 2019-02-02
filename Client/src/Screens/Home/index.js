@@ -7,11 +7,11 @@ class Home extends Component {
     this.state = {
     };
   }
-componentWillReceiveProps = (props) => {
-  console.log('[rp[s', props.state.authReducer)
-}
+
+
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <h1>Home</h1>
@@ -22,8 +22,7 @@ componentWillReceiveProps = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);  
-  return { state }
+  return { token: state }
 }
 
 export default connect(mapStateToProps)(Home);

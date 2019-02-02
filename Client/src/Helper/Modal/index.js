@@ -13,7 +13,7 @@ export class AuthModal extends Component {
     this.state = { open: false }
   }
 
-  componentWillReceiveProps(props, nextProps) {
+  componentWillReceiveProps(props) {
     
     let prop = props.state.authReducer.modal
     if (prop){   
@@ -59,7 +59,7 @@ export class AuthModal extends Component {
               swal(dat.message)
             } else {
               this.props.onCreateUser({ User: { email: email, password: password } })
-              this.props.history.push('/Home')
+              this.props.history.replace('/Home')
             }
           })
           .catch(err => {
@@ -85,7 +85,7 @@ export class AuthModal extends Component {
             } else {
               this.props.onCreateUser({ User: { email: email, password: password } })
               this.props.onStoreToken({token : dat.token})
-              this.props.history.push('/Home')
+              this.props.history.replace('/Home')
             }
           })
           .catch(err => {
