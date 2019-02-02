@@ -4,7 +4,7 @@ import { Input } from 'semantic-ui-react'
 import { Grid } from 'semantic-ui-react'
 import swal from 'sweetalert'
 
-import { storeToken, createUser } from '../../Redux/Actions/authAction'
+import { storeToken, createUser, } from '../../Redux/Actions/authAction'
 import { connect } from 'react-redux';
 
 export class AuthModal extends Component {
@@ -32,8 +32,6 @@ export class AuthModal extends Component {
   }
 
   action = () => {
-    console.log(this.props);
-
     const { email, password } = this.state;
     if (!email || !password) {
       swal('Invalid Email/Password')
@@ -57,6 +55,8 @@ export class AuthModal extends Component {
             if (response === false) {
               swal(dat.message)
             } else {
+              this.props.onCreateUser({ User: { email: email, password: password } })
+              this.props.storeToken({token : dat.token})
               this.props.history.push('/Home')
             }
           })
@@ -81,7 +81,8 @@ export class AuthModal extends Component {
             if (response === false) {
               swal(dat.message)
             } else {
-              sessionStorage.setItem('jwtToken', dat.token)
+              this.props.onCreateUser({ User: { email: email, password: password } })
+              this.props.storeToken({token : dat.token})
               this.props.history.push('/Home')
             }
           })
@@ -156,8 +157,7 @@ export class AuthModal extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(1, state);
-  return { todoList: state }
+  return { modal: state }
 }
 
 const mapDispatchToProps = {
