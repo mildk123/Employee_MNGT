@@ -8,10 +8,12 @@ class Home extends Component {
     };
   }
 
+  componentWillMount = () => {
+    console.log(this.props)
+  }
 
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <h1>Home</h1>
@@ -22,7 +24,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { token: state }
+  return { store : state }
 }
 
 export default connect(mapStateToProps)(Home);

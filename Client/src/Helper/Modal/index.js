@@ -10,13 +10,13 @@ import { connect } from 'react-redux';
 export class AuthModal extends Component {
   constructor() {
     super()
-    this.state = { open: false }
+    this.state = { open: false, isLoading: false }
   }
 
   componentWillReceiveProps(props) {
-    
+
     let prop = props.state.authReducer.modal
-    if (prop){   
+    if (prop) {
       this.setState({
         btnIcon: prop.btnIcon,
         modalTitle: prop.modalTitle,
@@ -39,6 +39,9 @@ export class AuthModal extends Component {
     if (!email || !password) {
       swal('Invalid Email/Password')
     } else {
+      this.setState({
+        isLoading: true
+      })
       if (this.props.type === 'Register') {
         fetch('http://localhost:5000/auth/register', {
           method: 'POST',
@@ -57,6 +60,9 @@ export class AuthModal extends Component {
             let response = dat.match
             if (response === false) {
               swal(dat.message)
+              this.setState({
+                isLoading: false
+              })
             } else {
               this.props.onCreateUser({ User: { email: email, password: password } })
               this.props.history.replace('/Home')
@@ -64,6 +70,9 @@ export class AuthModal extends Component {
           })
           .catch(err => {
             swal(err.message)
+            this.setState({
+              isLoading: false
+            })
             console.log(err.message)
           })
 
@@ -82,14 +91,20 @@ export class AuthModal extends Component {
             let response = dat.match
             if (response === false) {
               swal(dat.message)
+              this.setState({
+                isLoading: false
+              })
             } else {
               this.props.onCreateUser({ User: { email: email, password: password } })
-              this.props.onStoreToken({token : dat.token})
+              this.props.onStoreToken({ token: dat.token })
               this.props.history.replace('/Home')
             }
           })
           .catch(err => {
             swal(err.message)
+            this.setState({
+              isLoading: false
+            })
             console.log(err.message)
           }
           )
@@ -100,7 +115,7 @@ export class AuthModal extends Component {
   render() {
     const { open, btnIcon,
       modalTitle,
-      modalType, } = this.state
+      modalType } = this.state
 
     return (
       <div>
@@ -146,10 +161,16 @@ export class AuthModal extends Component {
           <Modal.Actions>
             <Button negative onClick={this.close}>Cancel</Button>
 
-            <Button color='black' icon labelPosition='right' onClick={this.action}>
-              {modalType}
-              <Icon name={btnIcon} />
-            </Button>
+            {!this.state.isLoading ?
+              (<Button color='black' icon labelPosition='right' onClick={this.action}>
+                {modalType}
+                <Icon name={btnIcon} />
+              </Button>) :
+
+              (<Button color='black' loading>
+                Loading
+              </Button>)
+            }
           </Modal.Actions>
 
         </Modal>
