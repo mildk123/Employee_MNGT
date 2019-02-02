@@ -6,8 +6,8 @@ import './style.css'
 
 class AuthScreen extends Component {
     render() {
-        return <Fragment >
-            <div className="myComponent">
+        return <Fragment  >
+            <div className="myComponent" style={{ height: '100vh' ,background:' linear-gradient(180deg, #6a3093, #a044ff)', overflow : 'auto'}}>
                 <h1>Authentication</h1>
                 <div className="btnDiv">
                     <Button {...this.props}/>
