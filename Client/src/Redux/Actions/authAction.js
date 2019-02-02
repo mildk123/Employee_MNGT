@@ -1,3 +1,9 @@
+const fireModal = (payload) => {
+    return {
+        type: "CHANGE_MODAL",
+        payload : payload
+    }
+}
 const storeToken = (token) => {
     return {
         type: "USER_TOKEN",
@@ -18,6 +24,7 @@ const updateUser = (user) => {
 }
 
 export {
+    fireModal,
     storeToken,
     createUser,
     updateUser

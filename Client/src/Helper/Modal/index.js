@@ -2,13 +2,25 @@ import React, { Component } from 'react'
 import { Button, Modal, Icon } from 'semantic-ui-react'
 import { Input } from 'semantic-ui-react'
 import { Grid } from 'semantic-ui-react'
-import {connect} from 'react-redux'
 import swal from 'sweetalert'
 
-class AuthModal extends Component {
+import { storeToken, createUser } from '../../Redux/Actions/authAction'
+import { connect } from 'react-redux';
+
+export class AuthModal extends Component {
   constructor() {
     super()
     this.state = { open: false }
+  }
+
+  componentWillReceiveProps(props, nextProps) {
+    let prop = props.state.authReducer.modal
+    this.setState({
+      btnIcon: prop.btnIcon,
+      modalTitle: prop.modalTitle,
+      modalType: prop.modalType,
+      open: true
+    })
   }
 
   show = () => this.setState({ open: true })
@@ -20,6 +32,8 @@ class AuthModal extends Component {
   }
 
   action = () => {
+    console.log(this.props);
+
     const { email, password } = this.state;
     if (!email || !password) {
       swal('Invalid Email/Password')
@@ -67,7 +81,7 @@ class AuthModal extends Component {
             if (response === false) {
               swal(dat.message)
             } else {
-                sessionStorage.setItem('jwtToken', dat.token)
+              sessionStorage.setItem('jwtToken', dat.token)
               this.props.history.push('/Home')
             }
           })
@@ -81,12 +95,14 @@ class AuthModal extends Component {
   }
 
   render() {
-    const { open } = this.state
+    const { open, btnIcon,
+      modalTitle,
+      modalType, } = this.state
 
     return (
       <div>
         <Modal size='tiny' open={open} onClose={this.close}>
-          <Modal.Header>{this.props.modalTitle}</Modal.Header>
+          <Modal.Header>{modalTitle}</Modal.Header>
 
           <Modal.Content>
             <Grid>
@@ -128,8 +144,8 @@ class AuthModal extends Component {
             <Button negative onClick={this.close}>Cancel</Button>
 
             <Button color='black' icon labelPosition='right' onClick={this.action}>
-              {this.props.type}
-              <Icon name={this.props.btnIcon} />
+              {modalType}
+              <Icon name={btnIcon} />
             </Button>
           </Modal.Actions>
 
@@ -139,12 +155,17 @@ class AuthModal extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  console.log(state);
-  return { todoList: state}
+const mapStateToProps = (state) => {
+  // console.log(1, state);
+  return { todoList: state }
 }
 
-export default connect(mapStateToProps)(AuthModal)
+const mapDispatchToProps = {
+  onStoreToken: storeToken,
+  onCreateUser: createUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthModal);
 
 
 // export default AuthModal;

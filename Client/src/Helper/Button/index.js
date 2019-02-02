@@ -1,6 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
+
+import { fireModal } from '../../Redux/Actions/authAction'
+import { connect } from 'react-redux';
+
 import Modal from '../Modal'
 
 class AuthButtons extends Component {
@@ -14,13 +18,22 @@ class AuthButtons extends Component {
 
   }
 
-  renderModal = type => {
-    this.setState({
-      modalType: type,
-      modalTitle: (type === 'Register' ? "Create Account" : 'Login'),
-      btnIcon: (type === 'Register' ? "user circle" : 'sign-in'),
-    })
-    this.showModal.current.show();
+  // renderModal = type => {
+  //   this.setState({
+  //     modalType: type,
+  //     modalTitle: (type === 'Register' ? "Create Account" : 'Login'),
+  //     btnIcon: (type === 'Register' ? "user circle" : 'sign-in'),
+  //   })
+  //   this.showModal.current.show();
+  // }
+
+  changeModal = (modal) => {
+    const currentModal = {
+      modalType: modal,
+      modalTitle: (modal === 'Register' ? "Create Account" : 'Login'),
+      btnIcon: (modal === 'Register' ? "user circle" : 'sign-in'),
+    }
+    this.props.onFireModal({ modal: currentModal });
   }
 
 
@@ -29,7 +42,7 @@ class AuthButtons extends Component {
     return (
       <Fragment>
         <Modal
-        {...this.props}
+          {...this.props}
           ref={this.showModal}
           type={modalType}
           modalTitle={modalTitle}
@@ -38,7 +51,8 @@ class AuthButtons extends Component {
         <div>
           <Button.Group>
             <Button
-              onClick={() => this.renderModal('Register')}
+              // onClick={() => this.renderModal('Register')}
+              onClick={() => this.changeModal('Register')}
               animated color='black' primary >
               <Button.Content visible>Register</Button.Content>
               <Button.Content hidden>
@@ -47,7 +61,10 @@ class AuthButtons extends Component {
             </Button>
 
             <div style={{ margin: 3 }} />
-            <Button onClick={() => this.renderModal('Login')} animated size="large" color="red"  >
+            <Button
+              //  onClick={() => this.renderModal('Login')} 
+              onClick={() => this.changeModal('Login')}
+              animated size="large" color="red"  >
               <Button.Content visible>Login</Button.Content>
               <Button.Content hidden>
                 <Icon name='sign-in' />
@@ -60,4 +77,17 @@ class AuthButtons extends Component {
   }
 }
 
-export default AuthButtons;
+const mapStateToProps = (state, props) => {
+  return {
+    state
+  }
+
+}
+
+const mapDispatchToProps = ({
+  onFireModal: fireModal
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthButtons);
+
+// export default AuthButtons;
