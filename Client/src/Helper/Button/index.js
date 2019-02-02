@@ -18,15 +18,6 @@ class AuthButtons extends Component {
 
   }
 
-  // renderModal = type => {
-  //   this.setState({
-  //     modalType: type,
-  //     modalTitle: (type === 'Register' ? "Create Account" : 'Login'),
-  //     btnIcon: (type === 'Register' ? "user circle" : 'sign-in'),
-  //   })
-  //   this.showModal.current.show();
-  // }
-
   changeModal = (modal) => {
     const currentModal = {
       modalType: modal,
