@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 
 class Home extends Component {
   constructor(props) {
@@ -6,8 +7,9 @@ class Home extends Component {
     this.state = {
     };
   }
-
-
+componentWillReceiveProps = (props) => {
+  console.log('[rp[s', props.state.authReducer)
+}
 
   render() {
     return (
@@ -18,4 +20,10 @@ class Home extends Component {
     );
   }
 }
-export default Home;
+
+const mapStateToProps = (state) => {
+  console.log(state);  
+  return { state }
+}
+
+export default connect(mapStateToProps)(Home);

@@ -56,7 +56,7 @@ export class AuthModal extends Component {
               swal(dat.message)
             } else {
               this.props.onCreateUser({ User: { email: email, password: password } })
-              this.props.storeToken({token : dat.token})
+              this.props.onStoreToken({token : dat.token})
               this.props.history.push('/Home')
             }
           })
@@ -82,7 +82,7 @@ export class AuthModal extends Component {
               swal(dat.message)
             } else {
               this.props.onCreateUser({ User: { email: email, password: password } })
-              this.props.storeToken({token : dat.token})
+              this.props.onStoreToken({token : dat.token})
               this.props.history.push('/Home')
             }
           })
