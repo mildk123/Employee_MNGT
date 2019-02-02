@@ -10,12 +10,7 @@ import Modal from '../Modal'
 class AuthButtons extends Component {
   constructor() {
     super()
-    this.state = {
-      modalType: null,
-      modalTitle: null
-    }
-    this.showModal = React.createRef()
-
+    this.state = {}
   }
 
   changeModal = (modal) => {
@@ -29,15 +24,10 @@ class AuthButtons extends Component {
 
 
   render() {
-    const { modalType, modalTitle, btnIcon } = this.state;
     return (
       <Fragment>
         <Modal
           {...this.props}
-          ref={this.showModal}
-          type={modalType}
-          modalTitle={modalTitle}
-          btnIcon={btnIcon}
         />
         <div>
           <Button.Group>

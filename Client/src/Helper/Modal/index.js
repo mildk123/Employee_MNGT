@@ -14,13 +14,16 @@ export class AuthModal extends Component {
   }
 
   componentWillReceiveProps(props, nextProps) {
+    
     let prop = props.state.authReducer.modal
-    this.setState({
-      btnIcon: prop.btnIcon,
-      modalTitle: prop.modalTitle,
-      modalType: prop.modalType,
-      open: true
-    })
+    if (prop){   
+      this.setState({
+        btnIcon: prop.btnIcon,
+        modalTitle: prop.modalTitle,
+        modalType: prop.modalType,
+        open: true
+      })
+    }
   }
 
   show = () => this.setState({ open: true })
@@ -37,7 +40,7 @@ export class AuthModal extends Component {
       swal('Invalid Email/Password')
     } else {
       if (this.props.type === 'Register') {
-        fetch('/auth/register', {
+        fetch('http://localhost:5000/auth/register', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -56,7 +59,6 @@ export class AuthModal extends Component {
               swal(dat.message)
             } else {
               this.props.onCreateUser({ User: { email: email, password: password } })
-              this.props.onStoreToken({token : dat.token})
               this.props.history.push('/Home')
             }
           })
@@ -66,7 +68,7 @@ export class AuthModal extends Component {
           })
 
       } else {
-        fetch('/auth/login', {
+        fetch('http://localhost:5000/auth/login', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
