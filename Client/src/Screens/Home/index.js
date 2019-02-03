@@ -15,17 +15,19 @@ class Home extends Component {
   }
 
   checkAuth = () => {
-    fetch ( '' )
-    .then()
-    .then()
-    .catch(error => console.log(error.message))
+    let token = sessionStorage.getItem('SessionToken')
+    if (!token){
+      this.props.history.replace('/')
+    }
+    
+    console.log(token)
   }
 
   render() {
     return (
       <Fragment>
         {/* App Bar//////////////////////// */}
-        <AppBar
+        <AppBar {...this.props}
           variant={'h5'}
           textColor={'inherit'}
         >

@@ -64,6 +64,8 @@ export class AuthModal extends Component {
                 isLoading: false
               })
             } else {
+              console.log(dat)
+              sessionStorage.setItem('SessionToken', dat.token)
               this.props.onCreateUser({ User: { email: email, password: password } })
               this.props.history.replace('/Home')
             }
@@ -95,7 +97,8 @@ export class AuthModal extends Component {
                 isLoading: false
               })
             } else {
-              this.props.onCreateUser({ User: { email: email, password: password } })
+              console.log(dat)
+              sessionStorage.setItem('SessionToken', dat.token)
               this.props.onStoreToken({ token: dat.token })
               this.props.history.replace('/Home')
             }

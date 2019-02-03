@@ -7,13 +7,15 @@ import Typography from '@material-ui/core/Typography';
 
 
 import { Icon } from "semantic-ui-react";
-import { IconButton } from "@material-ui/core";
+import { IconButton, Button } from "@material-ui/core";
 
 const styles = {
     root: {
         flexGrow: 1,
     },
 };
+
+
 
 function SimpleAppBar(props) {
     const { classes } = props;
@@ -33,6 +35,12 @@ function SimpleAppBar(props) {
                     <Typography variant={props.variant} color={props.textColor}>
                         {props.children}
                     </Typography>
+                    <Button
+                        onClick={() => {
+                            sessionStorage.removeItem('SessionToken')
+                            props.history.replace('/')
+                        }}
+                    >Sign Out</Button>
                 </Toolbar>
             </AppBar>
         </div>

@@ -7,15 +7,16 @@ const jwt = require('jsonwebtoken');
 
 
 // ///////////////// Authentication ////////////////////
-router.post("/register", (req, res) => {
+router.post("/register", async (req, res) => {
     console.log('register User')
     const user = req.body;
     const hash = hashPassword(user.password);
 
     const newUser = new Users({ email: user.email, password: hash });
+    const token = await jwt.sign({ user: user[0] }, 'emp_mgnt112');
 
     newUser.save()
-        .then(() => res.send({ message: "User registered successfully!", registered: true }))
+        .then(() => res.send({ message: "User registered successfully!", registered: true, token: token, }))
         .catch(e => res.status(500).send({ message: e.message, registered: false }));
 })
 
