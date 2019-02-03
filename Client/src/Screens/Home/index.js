@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import AppBar from '../../Helper/Appbar'
+import { Icon } from "semantic-ui-react";
+import { Toolbar, IconButton } from "@material-ui/core";
 
 class Home extends Component {
   constructor(props) {
@@ -8,15 +11,31 @@ class Home extends Component {
     };
   }
 
+ 
   componentWillMount = () => {
     console.log(this.props)
   }
-
-
   render() {
     return (
       <div>
-        <h1>Home</h1>
+        <AppBar
+        AppBarColor={'#7ad179'}
+        variant={'h5'}
+        textColor={'inherit'}
+        >
+        <Toolbar>
+         <IconButton>
+         <Icon 
+         className="styles.icon"
+         name="users"
+         size='large'
+         inverted
+            />
+            </IconButton>
+         Home
+         
+            </Toolbar>
+          </AppBar>
         <div />
       </div>
     );
@@ -26,5 +45,6 @@ class Home extends Component {
 const mapStateToProps = (state) => {
   return { store : state }
 }
+
 
 export default connect(mapStateToProps)(Home);
