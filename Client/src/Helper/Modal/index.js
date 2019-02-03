@@ -34,15 +34,15 @@ export class AuthModal extends Component {
     })
   }
 
-  action = () => {
+  action = (modalType) => {
     const { email, password } = this.state;
     if (!email || !password) {
-      swal('Invalid Email/Password')
+      swal('Please Enter Email/Password')
     } else {
       this.setState({
         isLoading: true
       })
-      if (this.props.type === 'Register') {
+      if (modalType === 'Register') {
         fetch('http://localhost:5000/auth/register', {
           method: 'POST',
           headers: {
@@ -56,26 +56,25 @@ export class AuthModal extends Component {
         }
         )
           .then(data => data.json())
-          .then(dat => {
-            let response = dat.match
+          .then(callback => {
+            let response = callback.match
             if (response === false) {
-              swal(dat.message)
+              swal(callback.message)
               this.setState({
                 isLoading: false
               })
             } else {
-              console.log(dat)
-              sessionStorage.setItem('SessionToken', dat.token)
+              sessionStorage.setItem('SessionToken', callback.token)
               this.props.onCreateUser({ User: { email: email, password: password } })
               this.props.history.replace('/Home')
             }
           })
+
           .catch(err => {
-            swal(err.message)
+            console.log(err.message)
             this.setState({
               isLoading: false
             })
-            console.log(err.message)
           })
 
       } else {
@@ -97,7 +96,6 @@ export class AuthModal extends Component {
                 isLoading: false
               })
             } else {
-              console.log(dat)
               sessionStorage.setItem('SessionToken', dat.token)
               this.props.onStoreToken({ token: dat.token })
               this.props.history.replace('/Home')
@@ -165,7 +163,7 @@ export class AuthModal extends Component {
             <Button negative onClick={this.close}>Cancel</Button>
 
             {!this.state.isLoading ?
-              (<Button color='black' icon labelPosition='right' onClick={this.action}>
+              (<Button color='black' icon labelPosition='right' onClick={() => this.action(modalType)}>
                 {modalType}
                 <Icon name={btnIcon} />
               </Button>) :
