@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
 import AppBar from '../../Helper/Appbar'
-import { Icon } from "semantic-ui-react";
-import { Toolbar, IconButton } from "@material-ui/core";
+import Container from '../../Helper/Container'
 
 class Home extends Component {
   constructor(props) {
@@ -11,39 +10,34 @@ class Home extends Component {
     };
   }
 
- 
+
   componentWillMount = () => {
     console.log(this.props)
   }
   render() {
     return (
-      <div>
+      <Fragment>
+        {/* App Bar//////////////////////// */}
         <AppBar
-        AppBarColor={'#7ad179'}
-        variant={'h5'}
-        textColor={'inherit'}
+          variant={'h5'}
+          textColor={'inherit'}
         >
-        <Toolbar>
-         <IconButton>
-         <Icon 
-         className="styles.icon"
-         name="users"
-         size='large'
-         inverted
-            />
-            </IconButton>
-         Home
-         
-            </Toolbar>
-          </AppBar>
-        <div />
-      </div>
+          Home
+        </AppBar>
+
+        {/* Search Card //////////////////////// */}
+        <div style={{paddingBlockStart: 30, paddingBlockEnd: 30, backgroundColor: 'silver', alignContent: 'center'}}>
+        <Container>
+          <h1>Apple Beez</h1>
+        </Container>
+        </div>
+      </Fragment>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return { store : state }
+  return { store: state }
 }
 
 
