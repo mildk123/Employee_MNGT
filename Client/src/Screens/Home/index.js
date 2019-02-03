@@ -10,12 +10,17 @@ class Home extends Component {
     super(props);
     this.state = {
     };
+
+    this.checkAuth()
   }
 
-
-  componentWillMount = () => {
-    console.log(this.props)
+  checkAuth = () => {
+    fetch ( '' )
+    .then()
+    .then()
+    .catch(error => console.log(error.message))
   }
+
   render() {
     return (
       <Fragment>
@@ -35,8 +40,7 @@ class Home extends Component {
         </div>
 
         {/* Employees Card //////////////////////// */}
-        <div style={{ display: 'flex', flexWrap: 'wrap',
-       }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
           <Card
             fname='Steven'
             dept='Technology'

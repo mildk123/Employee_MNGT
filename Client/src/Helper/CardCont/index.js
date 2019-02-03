@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Icon, Image, Popup } from 'semantic-ui-react'
 
 const CardExampleCard = (props) => (
-  <div style={{textAlign: 'center', padding: 25}}>
+  <div style={{textAlign: 'center', padding: 50}}>
     <Card color='blue' raised>
       <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />
       <Card.Content>
