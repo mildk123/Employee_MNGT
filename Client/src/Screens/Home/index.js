@@ -35,15 +35,52 @@ class Home extends Component {
         </div>
 
         {/* Employees Card //////////////////////// */}
-        <div style={{ backgroundColor:'pink',padding: 20, textAlign: 'center'}}>      
-          <Card 
-          fname='Steven'
-          dept='Technology'
-          id='Gujca'
-          band='D1'
-          specs=" sda sd"
-          father="Young"
-          address="C1, as"
+        <div style={{ display: 'flex', flexWrap: 'wrap',
+       }}>
+          <Card
+            fname='Steven'
+            dept='Technology'
+            id='Gujca'
+            band='D1'
+            specs=" sda sd"
+            father="Young"
+            address="C1, as"
+          />
+          <Card
+            fname='Steven'
+            dept='Technology'
+            id='Gujca'
+            band='D1'
+            specs=" sda sd"
+            father="Young"
+            address="C1, as"
+          />
+          <Card
+            fname='Steven'
+            dept='Technology'
+            id='Gujca'
+            band='D1'
+            specs=" sda sd"
+            father="Young"
+            address="C1, as"
+          />
+          <Card
+            fname='Steven'
+            dept='Technology'
+            id='Gujca'
+            band='D1'
+            specs=" sda sd"
+            father="Young"
+            address="C1, as"
+          />
+          <Card
+            fname='Steven'
+            dept='Technology'
+            id='Gujca'
+            band='D1'
+            specs=" sda sd"
+            father="Young"
+            address="C1, as"
           />
         </div>
       </Fragment>
