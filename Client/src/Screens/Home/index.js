@@ -35,7 +35,7 @@ class Home extends Component {
         </div>
 
         {/* Employees Card //////////////////////// */}
-        <div style={{ backgroundColor:'pink',flex: 1, justifyContent: 'center'}}>
+        <div style={{ backgroundColor:'pink',padding: 20, textAlign: 'center'}}>      
           <Card>
             <p>
               Domestic dogs inherited complex behaviors, such as bite inhibition, from their wolf
