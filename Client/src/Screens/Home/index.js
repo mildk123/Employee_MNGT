@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
 import AppBar from '../../Helper/Appbar'
-import Container from '../../Helper/Container'
 
+import Container from '../../Helper/Container'
+import Input from '../../Helper/Input'
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -26,9 +27,9 @@ class Home extends Component {
         </AppBar>
 
         {/* Search Card //////////////////////// */}
-        <div style={{paddingBlockStart: 30, paddingBlockEnd: 30, backgroundColor: 'silver', alignContent: 'center'}}>
+        <div style={{paddingBlockStart: 30, paddingBlockEnd: 30, alignContent: 'center'}}>
         <Container>
-          <h1>Apple Beez</h1>
+          <Input />
         </Container>
         </div>
       </Fragment>

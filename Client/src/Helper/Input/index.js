@@ -1,13 +1,38 @@
-import React from 'react'
-import { Input } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { Input, Button, Icon } from 'semantic-ui-react'
 
-const InputExampleLeftActionLabeledButton = () => (
-  <Input
-    action={{ color: 'teal', labelPosition: 'left', icon: 'cart', content: 'Checkout' }}
-    actionPosition='left'
-    placeholder='Search...'
-    defaultValue='52.03'
-  />
-)
+class Inputs extends Component {
+    constructor() {
+        super()
+        this.state = {
+            isLoading: false
+        }
+    }
+    render() {
+        return (
+            <Input
+                placeholder='Search...'
+                fluid >
+                <input />
+                {!this.state.isLoading ?
 
-export default InputExampleLeftActionLabeledButton
+                    (<Button inverted color='purple'
+                        animated >
+                        <Button.Content visible>Search</Button.Content>
+                        <Button.Content hidden loading="true">
+                            <Icon name='search' />
+                        </Button.Content>
+                    </Button>) : (
+                        <Button inverted color='purple' loading="true">
+                            <Button.Content visible>Search</Button.Content>
+                        </Button>
+                    )
+                }
+            </Input>
+
+        )
+    }
+}
+
+
+export default Inputs
