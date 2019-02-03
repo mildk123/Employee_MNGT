@@ -6,8 +6,6 @@ const path = require('path');
 const cors = require('cors')
 const mongoose = require('./config/db');
 
-const routes = require('./routes');
-
 
 let port = process.env.PORT || 5000;
 
@@ -25,7 +23,7 @@ db.once('open', () => {
 // Static file declaration
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.use('/', routes);
+app.use('/', require('./Routes/index'))
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
