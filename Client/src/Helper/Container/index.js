@@ -4,9 +4,8 @@ import React from 'react'
 import { Container } from 'semantic-ui-react'
 
 const ContainerExampleContainer = (props) => (
-    <Container text fluid>
-    {props.children}
- 
+  <Container text fluid>
+      {props.children}
   </Container>
 )
 
