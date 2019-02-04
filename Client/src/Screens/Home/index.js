@@ -73,11 +73,15 @@ class Home extends Component {
               return <div key={index}><Card
                 fname={item.emp_fname}
                 dept={item.emp_dept}
-                id={item._id}
+                id={`#${Math.floor(Math.random() * 9999)}`}
                 band={item.emp_band}
-                specs={item.emp_specs[0]}
+                specs={`
+                ${item.emp_specs[0]}  
+                ${item.emp_specs[1] ? (`/ ${item.emp_specs[1]} `) : ''} 
+                ${item.emp_specs[2] ? (`/ ${item.emp_specs[2]} `) : ''}
+                `}
                 father={item.father_info ? (item.father_info.name) : ('Not mentioned')}
-                address={item.address[0].flat_no}
+                address={`House no : ${item.address[0].house_no},${item.address[0].flat_no} `}
               />
               </div>
             })
