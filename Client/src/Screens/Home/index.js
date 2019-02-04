@@ -1,14 +1,18 @@
 import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
+import swal from 'sweetalert'
 import AppBar from '../../Helper/Appbar'
 
 import Container from '../../Helper/Container'
 import Input from '../../Helper/Input'
 import Card from '../../Helper/CardCont'
+
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isFetching: false,
+      employeeList: []
     };
 
     this.checkAuth()
@@ -18,10 +22,32 @@ class Home extends Component {
     let token = sessionStorage.getItem('SessionToken')
     if (!token) {
       this.props.history.replace('/')
+    } else {
+      this.fetchEmployee()
     }
   }
 
+  fetchEmployee = () => {
+    fetch('http://localhost:5000/employees/get')
+      .then(data => data.json())
+      .then(dat => {
+        console.log(dat)
+        let response = dat.employee;
+        if (response) {
+          this.setState({
+            employeeList: response,
+            isFetching: false
+          })
+        } else {
+          swal('failed to get employees list')
+        }
+
+      })
+      .catch(err => console.log(err.message))
+  }
+
   render() {
+    const { employeeList } = this.state;
     return (
       <Fragment>
 
@@ -42,24 +68,30 @@ class Home extends Component {
 
         {/* Employees Card //////////////////////// */}
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Card
-            fname='Steven'
-            dept='Technology'
-            id='Gujca'
-            band='D1'
-            specs=" sda sd"
-            father="Young"
-            address="C1, as"
-          />
-          <Card
-            fname='Steven'
-            dept='Technology'
-            id='Gujca'
-            band='D1'
-            specs=" sda sd"
-            father="Young"
-            address="C1, as"
-          />
+          {employeeList ? (
+            employeeList.map((item, index) => {
+              return <div key={index}><Card
+                fname={item.emp_fname}
+                dept={item.emp_dept}
+                id={item._id}
+                band={item.emp_band}
+                specs={item.emp_specs[0]}
+                father={item.father_info ? (item.father_info.name) : ('Not mentioned')}
+                address={item.address[0].flat_no}
+              />
+              </div>
+            })
+          ) : (
+              <Card
+                fname='first Name'
+                dept='Department'
+                id='Id'
+                band='band'
+                specs="specification"
+                father="father's name"
+                address="Address"
+              />
+            )}
         </div>
       </Fragment>
     );

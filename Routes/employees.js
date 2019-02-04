@@ -1,13 +1,16 @@
 const express = require("express");
 const routes = express.Router();
 
+const employees = require('../Model/Employees')
 
 // ///////////////// Employees List ////////////////////
-routes.get("/get", (req, res) => {
+routes.get("/get", async (req, res) => {
     console.log('List OF Employees')
-    res.status(200).send({ message: "Sahi Hai mere bhai", match: false });
-    return;
-
+    //Check Email
+    const employee = await employees.find({});
+    
+    res.status(200).send({ message: "Sahi Hai mere bhai", employee: employee });
+    res.end()
 })
 
 
