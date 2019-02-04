@@ -7,14 +7,34 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { Button, Icon } from 'semantic-ui-react'
 
+
+const styles = {
+    root: {
+        flexGrow: 1,
+    },
+    grow: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginLeft: -12,
+        marginRight: 20,
+    },
+    signOut : {
+        position: 'absolute',
+        right: 24
+    }
+};
+
 class MenuAppBar extends React.Component {
     render() {
+        const { classes } = this.props;
+
         return (
-            <div>
+            <div className={classes.root}>
 
                 <AppBar position="static" style={{ background: ' linear-gradient(10deg, #1D976C, #93F9B9)' }}>
                     <Toolbar>
-                        <IconButton>
+                        <IconButton className={classes.menuButton}>
                             <Icon
                                 className="styles.icon"
                                 name="users"
@@ -22,11 +42,11 @@ class MenuAppBar extends React.Component {
                                 inverted
                             />
                         </IconButton>
-                        <Typography variant="h6" color="inherit" >
+                        <Typography variant="h6" color="inherit" className={classes.grow} >
                             Home
             </Typography>
 
-                        <div>
+                        <div className={styles.signOut}>
                             <Button
                                 onClick={() => {
                                     sessionStorage.removeItem('SessionToken')
@@ -49,5 +69,9 @@ class MenuAppBar extends React.Component {
     }
 }
 
-export default (MenuAppBar);
+MenuAppBar.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(MenuAppBar);
 
