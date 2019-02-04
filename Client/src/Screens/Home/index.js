@@ -16,16 +16,15 @@ class Home extends Component {
 
   checkAuth = () => {
     let token = sessionStorage.getItem('SessionToken')
-    if (!token){
+    if (!token) {
       this.props.history.replace('/')
     }
-    
-    console.log(token)
   }
 
   render() {
     return (
       <Fragment>
+
         {/* App Bar//////////////////////// */}
         <AppBar {...this.props}
           variant={'h5'}
@@ -42,34 +41,7 @@ class Home extends Component {
         </div>
 
         {/* Employees Card //////////////////////// */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
-          <Card
-            fname='Steven'
-            dept='Technology'
-            id='Gujca'
-            band='D1'
-            specs=" sda sd"
-            father="Young"
-            address="C1, as"
-          />
-          <Card
-            fname='Steven'
-            dept='Technology'
-            id='Gujca'
-            band='D1'
-            specs=" sda sd"
-            father="Young"
-            address="C1, as"
-          />
-          <Card
-            fname='Steven'
-            dept='Technology'
-            id='Gujca'
-            band='D1'
-            specs=" sda sd"
-            father="Young"
-            address="C1, as"
-          />
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Card
             fname='Steven'
             dept='Technology'

@@ -20,8 +20,8 @@ db.once('open', () => {
   console.log("db connected!")
 });
 
-// Static file declaration
-app.use(express.static(path.join(__dirname, 'client/build')));
+// // Static file declaration
+// app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/', require('./Routes/index'))
 
