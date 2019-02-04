@@ -1,5 +1,17 @@
-import React, { Component } from 'react'
-import { Input, Button, Icon } from 'semantic-ui-react'
+import React, { Component, Fragment } from 'react'
+import { Input, Button, Icon, Dropdown } from 'semantic-ui-react'
+
+
+
+const options = [
+    { key: 'Name', text: 'Name', value: 'emp_fname' },
+    { key: 'Department', text: 'Department', value: 'emp_dept' },
+    { key: 'Band', text: 'Band', value: 'emp_band' },
+    { key: 'Specifications', text: 'Specifications', value: 'emp_specs' },
+    { key: 'Fathers name', text: 'Fathers name', value: 'father_info' },
+    { key: 'House No', text: 'House No', value: 'house_no' },
+    { key: 'Flat No', text: 'Flat No', value: 'flat_no' },
+]
 
 class Inputs extends Component {
     constructor() {
@@ -8,28 +20,19 @@ class Inputs extends Component {
             isLoading: false
         }
     }
+
     render() {
         return (
-            <Input
-                placeholder='Search...'
-                fluid >
-                <input />
-                {!this.state.isLoading ?
-
-                    (<Button inverted color='purple'
-                        animated >
-                        <Button.Content visible>Search</Button.Content>
-                        <Button.Content hidden loading="true">
-                            <Icon name='search' />
-                        </Button.Content>
-                    </Button>) : (
-                        <Button inverted color='purple' loading="true">
-                            <Button.Content visible>Search</Button.Content>
-                        </Button>
-                    )
-                }
-            </Input>
-
+            <Fragment>
+                    <Input
+                        onChange={(e) => {console.log(e.target.value)}}
+                        fluid
+                        label={<Dropdown onChange={(asd) => console.log(asd.target)} defaultValue='emp_fname' options={options} />}
+                        labelPosition='left'
+                        placeholder='Search...'
+                        action={{ color: 'twitter', labelPosition: 'left', icon: 'search', content: 'Search' }}
+                    />
+            </Fragment>
         )
     }
 }
