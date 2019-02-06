@@ -12,7 +12,8 @@ class Home extends Component {
     super(props);
     this.state = {
       isFetching: false,
-      employeeList: []
+      employeeList: [],
+      searchCat : 'emp_fname'
     };
 
     this.checkAuth()
@@ -29,12 +30,20 @@ class Home extends Component {
 
   dropOnChange = (event, data) => {
     console.log("on change drop", data.value)
+    this.setState({
+      searchCat : data.value
+    })
   }
+
   searchTextChange = (data) => {
     console.log("on change text", data)
+    this.setState({
+      searchTerm : data
+    })
   }
+
   buttonHandler = () => {
-    console.log("on change text")
+    this.searchEmp()
   }
 
   fetchEmployee = () => {
@@ -51,6 +60,34 @@ class Home extends Component {
         } else {
           swal('failed to get employees list')
         }
+
+      })
+      .catch(err => console.log(err.message))
+  }
+
+  searchEmp = () => {
+    fetch('http://localhost:5000/employees/search',{
+      method : "POST",
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body : JSON.stringify({
+        searchCat : this.state.searchCat,
+        searchTerm : this.state.searchTerm
+      })
+    })
+      .then(data => data.json())
+      .then(dat => {
+        console.log(dat)
+        // let response = dat.employee;
+        // if (response) {
+          // this.setState({
+          //   employeeList: response,
+          //   isFetching: false
+          // })
+        // } else {
+          // swal('failed to get employees list')
+        // }
 
       })
       .catch(err => console.log(err.message))
