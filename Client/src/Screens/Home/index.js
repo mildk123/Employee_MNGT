@@ -41,9 +41,9 @@ class Home extends Component {
     fetch('http://localhost:5000/employees/get')
       .then(data => data.json())
       .then(dat => {
-        console.log(dat)
         let response = dat.employee;
         if (response) {
+
           this.setState({
             employeeList: response,
             isFetching: false
