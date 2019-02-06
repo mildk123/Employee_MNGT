@@ -29,14 +29,12 @@ class Home extends Component {
   }
 
   dropOnChange = (event, data) => {
-    console.log("on change drop", data.value)
     this.setState({
       searchCat : data.value
     })
   }
 
   searchTextChange = (data) => {
-    console.log("on change text", data)
     this.setState({
       searchTerm : data
     })
@@ -79,15 +77,15 @@ class Home extends Component {
       .then(data => data.json())
       .then(dat => {
         console.log(dat)
-        // let response = dat.employee;
-        // if (response) {
-          // this.setState({
-          //   employeeList: response,
-          //   isFetching: false
-          // })
-        // } else {
-          // swal('failed to get employees list')
-        // }
+        let response = dat.employee;
+        if (response) {
+          this.setState({
+            employeeList: response,
+            isFetching: false
+          })
+        } else {
+          swal('failed to get employees list')
+        }
 
       })
       .catch(err => console.log(err.message))

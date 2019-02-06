@@ -15,11 +15,11 @@ routes.get("/get", async (req, res) => {
 
 routes.post("/search", async (req, res) => {
     console.log('search employee')
-    let request = req.body;
-    let searchTerm = request.searchTerm
+    let searchTerm = req.body.searchTerm
     //Check Email
-    const employee = await employees.find({ [request.searchCat] : { $regex: /^jason/i } })
-    console.log()
+
+    const employee = await employees.find({ [req.body.searchCat] : {$regex: new RegExp(searchTerm, "i") } })
+
     res.status(200).send({ message: "search response", employee: employee });
     res.end()
 })
