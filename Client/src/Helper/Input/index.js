@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Input, Button, Icon, Dropdown } from 'semantic-ui-react'
+import { Input, Dropdown } from 'semantic-ui-react'
 
 
 
@@ -21,17 +21,21 @@ class Inputs extends Component {
         }
     }
 
+    onChangeFollower(event, data) {
+        console.log("on change follower", data.value)
+    }
+
     render() {
         return (
             <Fragment>
-                    <Input
-                        onChange={(e) => {console.log(e.target.value)}}
-                        fluid
-                        label={<Dropdown onChange={(asd) => console.log(asd.target)} defaultValue='emp_fname' options={options} />}
-                        labelPosition='left'
-                        placeholder='Search...'
-                        action={{ color: 'twitter', labelPosition: 'left', icon: 'search', content: 'Search' }}
-                    />
+                <Input
+                    onChange={(e) => { console.log(e.target.value) }}
+                    fluid
+                    label={<Dropdown onChange={this.onChangeFollower} defaultValue='emp_fname' options={options} />}
+                    labelPosition='left'
+                    placeholder='Search...'
+                    action={{ color: 'twitter', labelPosition: 'left', icon: 'search', content: 'Search' }}
+                />
             </Fragment>
         )
     }
