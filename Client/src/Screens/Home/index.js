@@ -27,6 +27,16 @@ class Home extends Component {
     }
   }
 
+  dropOnChange = (event, data) => {
+    console.log("on change drop", data.value)
+  }
+  searchTextChange = (data) => {
+    console.log("on change text", data)
+  }
+  buttonHandler = () => {
+    console.log("on change text")
+  }
+
   fetchEmployee = () => {
     fetch('http://localhost:5000/employees/get')
       .then(data => data.json())
@@ -62,7 +72,11 @@ class Home extends Component {
         {/* Search Card //////////////////////// */}
         <div style={{ paddingBlockStart: 30, paddingBlockEnd: 30, alignContent: 'center' }}>
           <Container>
-            <Input />
+            <Input
+              dropHandler={(event, data) => this.dropOnChange(event, data)}
+              textChange={(data) => this.searchTextChange(data)}
+              buttonHandler={this.buttonHandler}
+            />
           </Container>
         </div>
 

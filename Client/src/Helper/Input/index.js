@@ -21,20 +21,22 @@ class Inputs extends Component {
         }
     }
 
-    onChangeFollower(event, data) {
-        console.log("on change follower", data.value)
-    }
-
     render() {
         return (
             <Fragment>
                 <Input
-                    onChange={(e) => { console.log(e.target.value) }}
+                    onChange={(e) => { this.props.textChange(e.target.value) }}
                     fluid
-                    label={<Dropdown onChange={this.onChangeFollower} defaultValue='emp_fname' options={options} />}
+                    label={<Dropdown onChange={(event, data) => this.props.dropHandler(event, data)} defaultValue='emp_fname' options={options} />}
                     labelPosition='left'
                     placeholder='Search...'
-                    action={{ color: 'twitter', labelPosition: 'left', icon: 'search', content: 'Search' }}
+                    action={{
+                        onClick: () => this.props.buttonHandler(),
+                        color: 'twitter',
+                        labelPosition: 'left',
+                        icon: 'search',
+                        content: 'Search'
+                    }}
                 />
             </Fragment>
         )
