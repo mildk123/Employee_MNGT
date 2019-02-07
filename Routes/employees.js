@@ -24,6 +24,18 @@ routes.post("/search", async (req, res) => {
     res.end()
 })
 
+routes.post("/add", async (req, res) => {
+    console.log('adding employee')
+    console.log(req.body)
+    let request = req.body
+    //Check Email
+
+    // const employee = await employees.find({ [req.body.searchCat] : {$regex: new RegExp(searchTerm, "i") } })
+
+    // res.status(200).send({ message: "search response", employee: employee });
+    // res.end()
+})
+
 
 
 module.exports = routes;
