@@ -2,8 +2,13 @@ import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
 import AppBar from '../../Helper/Appbar'
 
-import Container from '../../Helper/Container'
-import Input from '../../Helper/Input'
+import { Form } from 'semantic-ui-react'
+import { Card } from "@material-ui/core";
+
+const options = [
+  { key: 'm', text: 'Male', value: 'male' },
+  { key: 'f', text: 'Female', value: 'female' },
+]
 
 class AddEmp extends Component {
     constructor(props) {
@@ -21,23 +26,7 @@ class AddEmp extends Component {
         }
     }
 
-    dropOnChange = (event, data) => {
-        this.setState({
-            searchCat: data.value
-        })
-    }
-
-    searchTextChange = (data) => {
-        this.setState({
-            searchTerm: data
-        })
-    }
-
-    buttonHandler = () => {
-        this.searchEmp()
-    }
-
-
+   
     render() {
         return (
             <Fragment>
@@ -49,18 +38,39 @@ class AddEmp extends Component {
                 >
                     Add Employee
         </AppBar>
-
-                {/* Search Card //////////////////////// */}
-                <div style={{ paddingBlockStart: 30, paddingBlockEnd: 30, alignContent: 'center' }}>
-                    <Container>
-                        <Input
-                            dropHandler={(event, data) => this.dropOnChange(event, data)}
-                            textChange={(data) => this.searchTextChange(data)}
-                            buttonHandler={this.buttonHandler}
-                        />
-                    </Container>
-                </div>
-
+                    
+                    <Card>
+                    <Form>
+        <Form.Group widths='equal'>
+          <Form.Input fluid label='First name' placeholder='First name' />
+          <Form.Input fluid label='Last name' placeholder='Last name' />
+          <Form.Select fluid label='Gender' options={options} placeholder='Gender' />
+        </Form.Group>
+        <Form.Group inline>
+          <label>Size</label>
+          <Form.Radio
+            label='Small'
+            value='sm'
+            onChange={this.handleChange}
+          />
+          <Form.Radio
+            label='Medium'
+            value='md'
+            onChange={this.handleChange}
+          />
+          <Form.Radio
+            label='Large'
+            value='lg'
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+        <Form.TextArea label='About' placeholder='Tell us more about you...' />
+        <Form.Checkbox label='I agree to the Terms and Conditions' />
+        <Form.Button>Submit</Form.Button>
+      </Form>
+    )
+    
+                    </Card>
             </Fragment>
         );
     }
