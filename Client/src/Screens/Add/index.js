@@ -2,13 +2,9 @@ import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
 import AppBar from '../../Helper/Appbar'
 
-import { Form } from 'semantic-ui-react'
-import { Card } from "@material-ui/core";
+import { Form, Input } from 'semantic-ui-react'
+import { Card } from '@material-ui/core';
 
-const options = [
-  { key: 'm', text: 'Male', value: 'male' },
-  { key: 'f', text: 'Female', value: 'female' },
-]
 
 class AddEmp extends Component {
     constructor(props) {
@@ -26,7 +22,7 @@ class AddEmp extends Component {
         }
     }
 
-   
+
     render() {
         return (
             <Fragment>
@@ -38,39 +34,21 @@ class AddEmp extends Component {
                 >
                     Add Employee
         </AppBar>
-                    
-                    <Card>
-                    <Form>
-        <Form.Group widths='equal'>
-          <Form.Input fluid label='First name' placeholder='First name' />
-          <Form.Input fluid label='Last name' placeholder='Last name' />
-          <Form.Select fluid label='Gender' options={options} placeholder='Gender' />
-        </Form.Group>
-        <Form.Group inline>
-          <label>Size</label>
-          <Form.Radio
-            label='Small'
-            value='sm'
-            onChange={this.handleChange}
-          />
-          <Form.Radio
-            label='Medium'
-            value='md'
-            onChange={this.handleChange}
-          />
-          <Form.Radio
-            label='Large'
-            value='lg'
-            onChange={this.handleChange}
-          />
-        </Form.Group>
-        <Form.TextArea label='About' placeholder='Tell us more about you...' />
-        <Form.Checkbox label='I agree to the Terms and Conditions' />
-        <Form.Button>Submit</Form.Button>
-      </Form>
-    )
-    
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: 50 }}>
+                    <Card style={{ padding: 25 }}>
+                        <Form>
+                            <Form.Field>
+                                <label>Name</label>
+                                <Input type='text' />
+
+                                <label>Father name</label>
+                                <Input type='text' />
+                            </Form.Field>
+
+                        </Form>
                     </Card>
+                </div>
             </Fragment>
         );
     }
