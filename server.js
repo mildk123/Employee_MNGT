@@ -21,7 +21,7 @@ db.once('open', () => {
 });
 
 // // Static file declaration
-// app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/', require('./Routes/index'))
 
