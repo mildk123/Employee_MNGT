@@ -30,7 +30,6 @@ class AddEmp extends Component {
     }
 
     AddEmp = () => {
-        console.log(this.state)
         const { Address, Department, Spec1, Spec2, Band, fatherName, fname } = this.state;
         if (!Address || !Department || !Spec1 || !Band || !Spec2 || !fatherName || !fname) {
             swal('Please fill all the required fields')
@@ -45,7 +44,12 @@ class AddEmp extends Component {
                 })
             })
             .then(resp => resp.json())
-            .then(resp => console.log(resp))
+            .then(resp => {
+                let response = resp.ok
+                if (response) {
+                    this.props.history.replace('/Home')
+                }
+            })
             .catch(err => err.message)
         }
     }

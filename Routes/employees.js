@@ -18,7 +18,7 @@ routes.post("/search", async (req, res) => {
     let searchTerm = req.body.searchTerm
     //Check Email
 
-    const employee = await employees.find({ [req.body.searchCat] : {$regex: new RegExp(searchTerm, "i") } })
+    const employee = await employees.find({ [req.body.searchCat]: { $regex: new RegExp(searchTerm, "i") } })
 
     res.status(200).send({ message: "search response", employee: employee });
     res.end()
@@ -26,14 +26,21 @@ routes.post("/search", async (req, res) => {
 
 routes.post("/add", async (req, res) => {
     console.log('adding employee')
-    console.log(req.body)
     let request = req.body
+
     //Check Email
+    const employee = new employees({
+        emp_fname: request.fname,
+        emp_dept: request.Department,
+        emp_band: request.Band,
+        emp_specs: [request.Spec1, request.Spec2],
+        father_info: { name: request.fatherName },
+        address : request.Address
+    });
+    employee.save()
+        .then(() => res.send({ message: "employee inserted successfully!", ok : true }))
+        .catch(e => res.send({ message: e.message }))
 
-    // const employee = await employees.find({ [req.body.searchCat] : {$regex: new RegExp(searchTerm, "i") } })
-
-    // res.status(200).send({ message: "search response", employee: employee });
-    // res.end()
 })
 
 
