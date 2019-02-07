@@ -8,9 +8,9 @@ const options = [
     { key: 'Department', text: 'Department', value: 'emp_dept' },
     { key: 'Band', text: 'Band', value: 'emp_band' },
     { key: 'Specifications', text: 'Specifications', value: 'emp_specs' },
-    { key: 'Fathers name', text: 'Fathers name', value: 'father_info' },
-    { key: 'House No', text: 'House No', value: 'house_no' },
-    { key: 'Flat No', text: 'Flat No', value: 'flat_no' },
+    { key: 'Fathers name', text: 'Fathers name', value: 'father_info.name' },
+    { key: 'House No', text: 'House No', value: 'address[0].house_no' },
+    { key: 'Flat No', text: 'Flat No', value: 'address[0].flat_no' },
 ]
 
 class Inputs extends Component {
