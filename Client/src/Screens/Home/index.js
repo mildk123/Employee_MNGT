@@ -100,6 +100,8 @@ class Home extends Component {
         <AppBar {...this.props}
           variant={'h5'}
           textColor={'inherit'}
+          
+          addEmp="Add Employee"
         >
           Home
         </AppBar>

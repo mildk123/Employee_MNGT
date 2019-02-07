@@ -27,7 +27,7 @@ const styles = {
 
 class MenuAppBar extends React.Component {
     render() {
-        const { classes } = this.props;
+        const { classes, addEmp } = this.props;
 
         return (
             <div className={classes.root}>
@@ -37,16 +37,30 @@ class MenuAppBar extends React.Component {
                         <IconButton className={classes.menuButton}>
                             <Icon
                                 className="styles.icon"
-                                name="users"
+                                name={addEmp ? 'users' : 'plus circle'}
                                 size='large'
                                 inverted
                             />
                         </IconButton>
                         <Typography variant="h6" color="inherit" className={classes.grow} >
-                            Home
+                            {this.props.children}
             </Typography>
 
                         <div className={styles.signOut}>
+
+                        
+                        <Button
+                                onClick={() => {addEmp ?
+                                    this.props.history.push('/Add') :
+                                    this.props.history.goBack()
+                                }}
+                                animated color={addEmp  ? 'purple' : 'youtube' } >
+                                <Button.Content visible>{addEmp ? 'Add Employee' : 'Cancel'}</Button.Content>
+                                <Button.Content hidden>
+                                    <Icon name={addEmp ? 'plus' : 'arrow circle left'} />
+                                </Button.Content>
+                            </Button>
+
                             <Button
                                 onClick={() => {
                                     sessionStorage.removeItem('SessionToken')
@@ -58,6 +72,7 @@ class MenuAppBar extends React.Component {
                                     <Icon name='sign-out' />
                                 </Button.Content>
                             </Button>
+
 
 
                         </div>
