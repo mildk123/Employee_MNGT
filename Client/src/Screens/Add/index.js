@@ -34,7 +34,7 @@ class AddEmp extends Component {
         if (!Address || !Department || !Spec1 || !Band || !Spec2 || !fatherName || !fname) {
             swal('Please fill all the required fields')
         } else {
-            fetch('http://localhost:5000/employees/add ', {
+            fetch('/employees/add ', {
                 method:"POST",
                 headers: {
                     "Content-type": 'application/json'

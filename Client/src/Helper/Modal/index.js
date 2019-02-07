@@ -43,7 +43,7 @@ export class AuthModal extends Component {
         isLoading: true
       })
       if (modalType === 'Register') {
-        fetch('http://localhost:5000/auth/register', {
+        fetch('/auth/register', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -78,7 +78,7 @@ export class AuthModal extends Component {
           })
 
       } else {
-        fetch('http://localhost:5000/auth/login', {
+        fetch('/auth/login', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',

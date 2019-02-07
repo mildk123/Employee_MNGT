@@ -45,7 +45,7 @@ class Home extends Component {
   }
 
   fetchEmployee = () => {
-    fetch('http://localhost:5000/employees/get')
+    fetch('/employees/get')
       .then(data => data.json())
       .then(dat => {
         let response = dat.employee;
@@ -64,7 +64,7 @@ class Home extends Component {
   }
 
   searchEmp = () => {
-    fetch('http://localhost:5000/employees/search',{
+    fetch('/employees/search',{
       method : "POST",
       headers:{
         'Content-Type': 'application/json'
