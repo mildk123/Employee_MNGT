@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
 import AppBar from '../../Helper/Appbar'
 
-import { Form, Input } from 'semantic-ui-react'
+import { Form, Input, Button } from 'semantic-ui-react'
 import { Card } from '@material-ui/core';
 
 
@@ -21,6 +21,10 @@ class AddEmp extends Component {
             this.props.history.replace('/')
         }
     }
+    
+    onChange = (data) => {
+        console.log(data.target.value)
+    }
 
 
     render() {
@@ -38,14 +42,38 @@ class AddEmp extends Component {
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: 50 }}>
                     <Card style={{ padding: 25 }}>
                         <Form>
-                            <Form.Field>
-                                <label>Name</label>
-                                <Input type='text' />
-
-                                <label>Father name</label>
-                                <Input type='text' />
+                            <Form.Field required>
+                                <label>First Name</label>
+                                <Input type='text' onChange={(text) => this.onChange(text)}/>
                             </Form.Field>
-
+                            <Form.Field required>
+                                <label>Father name</label>
+                                <Input type='text' onChange={(text) => this.onChange(text)}/>
+                            </Form.Field>
+                            <Form.Field required>
+                                <label>Department</label>
+                                <Input type='text' onChange={(text) => this.onChange(text)}/>
+                            </Form.Field>
+                            <Form.Field required>
+                                <label>Band</label>
+                                <Input type='text' onChange={(text) => this.onChange(text)}/>
+                            </Form.Field>
+                            <Form.Field required>
+                                <label>Specification 1</label>
+                                <Input type='text' onChange={(text) => this.onChange(text)}/>
+                            </Form.Field>
+                            <Form.Field required>
+                                <label>Specification 2</label>
+                                <Input type='text' onChange={(text) => this.onChange(text)}/>
+                            </Form.Field>
+                            <Form.Field required>
+                                <label>Address</label>
+                                <Input type='text' onChange={(text) => this.onChange(text)}/>
+                            </Form.Field>
+                            <div>
+                                <Button color='instagram'>Reset</Button>
+                                <Button color="green">Done</Button>
+                            </div>
                         </Form>
                     </Card>
                 </div>
